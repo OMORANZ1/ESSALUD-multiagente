@@ -18,7 +18,7 @@ def _as_bool(value: str | None, default: bool = False) -> bool:
 @dataclass(frozen=True)
 class Settings:
     groq_api_key: str = os.getenv("GROQ_API_KEY", "")
-    groq_model: str = os.getenv("GROQ_MODEL", "llama3-70b-8192")
+    groq_model: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
     app_host: str = os.getenv("APP_HOST", "0.0.0.0")
     app_port: int = int(os.getenv("APP_PORT", "8000"))
     debug: bool = _as_bool(os.getenv("DEBUG"), True)

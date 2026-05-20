@@ -62,7 +62,7 @@ Edita `.env` y coloca tu API key:
 
 ```bash
 GROQ_API_KEY=tu_api_key_de_groq
-GROQ_MODEL=llama3-70b-8192
+GROQ_MODEL=llama-3.3-70b-versatile
 APP_HOST=0.0.0.0
 APP_PORT=8000
 DEBUG=true
