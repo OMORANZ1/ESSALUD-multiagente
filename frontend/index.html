@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EsSalud Multiagente</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">E</span>
+          <div>
+            <h1>EsSalud</h1>
+            <p>Chat multiagente</p>
+          </div>
+        </div>
+
+        <section class="agent-panel" aria-label="Agentes disponibles">
+          <h2>Agentes</h2>
+          <button class="agent active" data-agent="orquestador">
+            <span>Orquestador</span>
+            <small>Detecta intención</small>
+          </button>
+          <button class="agent" data-agent="citas">
+            <span>Citas</span>
+            <small>Agenda y cambios</small>
+          </button>
+          <button class="agent" data-agent="informativo">
+            <span>Informativo</span>
+            <small>Sedes y trámites</small>
+          </button>
+          <button class="agent" data-agent="reclamos">
+            <span>Reclamos</span>
+            <small>CAS y seguimiento</small>
+          </button>
+          <button class="agent" data-agent="derivacion">
+            <span>Derivación</span>
+            <small>Especialistas</small>
+          </button>
+        </section>
+
+        <section class="metrics" aria-label="Métricas de sesión">
+          <h2>Métricas</h2>
+          <dl>
+            <div><dt>Consultas</dt><dd id="queriesCount">0</dd></div>
+            <div><dt>Tokens</dt><dd id="tokensUsed">0</dd></div>
+            <div><dt>Éxito</dt><dd id="successRate">0%</dd></div>
+            <div><dt>Latencia</dt><dd id="latency">0 ms</dd></div>
+          </dl>
+        </section>
+      </aside>
+
+      <section class="chat-pane">
+        <header class="chat-header">
+          <div>
+            <p class="eyebrow">Demo académica</p>
+            <h2>Asistente virtual de EsSalud</h2>
+          </div>
+          <span id="statusPill" class="status-pill">Conectando</span>
+        </header>
+
+        <div id="messages" class="messages" aria-live="polite"></div>
+
+        <form id="chatForm" class="composer">
+          <input
+            id="messageInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Escribe tu consulta..."
+            aria-label="Mensaje"
+            required
+          />
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
