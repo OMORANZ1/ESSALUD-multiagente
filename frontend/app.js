@@ -1,4 +1,7 @@
-const API_BASE = "http://localhost:8000";
+const isStandaloneLocalFrontend =
+  ["localhost", "127.0.0.1"].includes(window.location.hostname) &&
+  ["", "5500"].includes(window.location.port);
+const API_BASE = isStandaloneLocalFrontend ? "http://localhost:8000" : window.location.origin;
 
 const form = document.querySelector("#chatForm");
 const input = document.querySelector("#messageInput");
@@ -92,7 +95,7 @@ form.addEventListener("submit", async (event) => {
     updateMetrics(data.metrics);
     setStatus("Conectado");
   } catch (error) {
-    addMessage("assistant", "No pude conectar con el backend. Verifica que FastAPI esté ejecutándose en el puerto 8000.", "sistema");
+    addMessage("assistant", "No pude conectar con el backend. Verifica que el servicio FastAPI esté ejecutándose.", "sistema");
     setStatus("Error", true);
   } finally {
     input.disabled = false;

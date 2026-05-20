@@ -92,6 +92,22 @@ curl -X POST http://localhost:8000/api/chat ^
 
 Abre `frontend/index.html` en el navegador. El frontend llama al backend en `http://localhost:8000`.
 
+También puedes abrir todo desde FastAPI cuando el backend esté corriendo:
+
+```bash
+http://localhost:8000
+```
+
+## Despliegue en Render
+
+El repositorio incluye `render.yaml` para desplegar backend y frontend como un solo servicio web.
+
+1. En Render, crea un nuevo Blueprint o Web Service desde el repositorio de GitHub.
+2. Usa esta rama: `main`.
+3. Configura la variable secreta `GROQ_API_KEY` con tu API key real.
+4. Verifica que `GROQ_MODEL` sea `llama-3.3-70b-versatile`.
+5. Despliega. La URL pública servirá el chatbot completo y `/api/health` servirá el health check.
+
 ## Endpoint Principal
 
 `POST /api/chat`

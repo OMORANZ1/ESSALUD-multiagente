@@ -1,9 +1,11 @@
 import time
 from collections.abc import AsyncGenerator
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
 from backend.agents import citas_agent, derivacion_agent, info_agent, reclamos_agent
 from backend.agents.orchestrator_agent import route_to_agent
@@ -40,9 +42,12 @@ AGENT_HANDLERS = {
     "derivacion": derivacion_agent.handle,
 }
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+FRONTEND_DIR = BASE_DIR / "frontend"
 
-@app.get("/", tags=["health"])
-async def root() -> dict[str, str]:
+
+@app.get("/api", tags=["health"])
+async def api_root() -> dict[str, str]:
     return {"message": "EsSalud Multiagente API activa. Usa POST /api/chat."}
 
 
@@ -95,3 +100,7 @@ async def chat_stream(request: ChatRequest) -> StreamingResponse:
         yield "event: done\ndata: ok\n\n"
 
     return StreamingResponse(events(), media_type="text/event-stream")
+
+
+if FRONTEND_DIR.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
